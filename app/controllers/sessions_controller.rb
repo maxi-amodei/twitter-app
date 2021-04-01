@@ -1,5 +1,6 @@
 class SessionsController < Clearance::SessionsController
-
+# Tengo que reescribir el session controller, heredando del base, para permitir ingresar
+#con username o email
   private
 
   def authenticate(_)
