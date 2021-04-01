@@ -4,8 +4,5 @@
   <%= form.submit "Shout" %>
 <% end %>
 
-<% @shouts.each do |shout| %>
-  <div>
-  <%= shout.body %>
-  </div>
-<%end %>
+<%# <%= render "../views/shouts/shout" %>
+<%= render @shouts %>
