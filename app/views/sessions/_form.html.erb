@@ -1,7 +1,8 @@
+<%# Yo Defino email_or_username como mi params key y luego modifico el session controller para que lo acepte %>
 <%= form_for :session, url: session_path do |form| %>
   <div class="text-field">
-    <%= form.label :email %>
-    <%= form.text_field :email, type: 'email' %>
+    <%= form.label :email_or_username %>
+    <%= form.text_field :email_or_username %>
   </div>
 
   <div class="password-field">
