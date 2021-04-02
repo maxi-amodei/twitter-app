@@ -1,7 +1,7 @@
 <%# Aca el shout hace referencia a cada instancia de @shouts, dentro de un each %>
   <div>
     <%= link_to shout.username, shout.user  %>
-    <%= render shout.content %>
+    <%= render shout.content if !shout.content.nil? %>
     <%= link_to shout do %>
       <%= time_ago_in_words(shout.created_at) %> ago
     <% end  %>
