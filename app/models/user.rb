@@ -22,4 +22,9 @@ class User < ApplicationRecord
     liked_shout_ids.include?(shout.id)
   end
 
+  def to_param
+    # Esto es para que en los params se pase el username y no el id user/1 vs. user/maxi-amodei
+    #Ahora resta cambiar el User controller y poner find_by_username
+    username
+  end
 end
