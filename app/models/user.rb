@@ -8,8 +8,29 @@ class User < ApplicationRecord
   has_many :liked_shouts, through: :likes, source: :shout
   # The likes model will have: user_id and shout_id
 
-  has_many :following_relationships, foreign_key: :follower_id
-  has_many :followed_users, through: :following_relationships
+  #Relationship between user and following relationship is through user_id and follower_id
+  # The following command : user_1.followed_users does the following:
+    # For user_1 with follower_id = user_id = 1 
+    # it looks for all the users with user_id = followed_user_id
+    # SELECT * FROM users
+    # (JOIN is on user_id = followed_user_id)
+    # (WHERE follower_id = 1) Para el user/follower 1, trame todos los followed
+  has_many :followed_user_relationships, foreign_key: :follower_id, class_name: "FollowingRelationship", dependent: :destroy
+  has_many :followed_users, through: :followed_user_relationships
+
+
+  # Rails trata de averiguar la clase de la asociacion
+  # Como follower_relationship no existe, le agrego  class_name: "FollowingRelationship"
+  # Esto me genera la asociacion para traerme a quienes ME SIGUEN, followers
+  
+  # For user_1 with followed_user_id = user_id = 1 
+    # it looks for all the users with user_id = follower_id
+    # SELECT * FROM users
+    # (JOIN is on user_id = follower_id)
+    # (WHERE followed_user_id = 1) Para el user/follower 1, trame todos los que me tienen como followed
+
+  has_many :follower_relationships, foreign_key: :followed_user_id, class_name: "FollowingRelationship", dependent: :destroy
+  has_many :followers, through: :follower_relationships
 
   def follow(user)
     followed_users << user
