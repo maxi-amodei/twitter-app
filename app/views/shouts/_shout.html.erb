@@ -3,7 +3,10 @@
     <%= avatar(shout.user)  %>
     <%= link_to shout.username, shout.user  %>
     <%= render shout.content if !shout.content.nil? %>
+
     <%= link_to shout do %>
       <%= time_ago_in_words(shout.created_at) %> ago
     <% end  %>
+
+    <%= like_button(shout) %>
   </div>
