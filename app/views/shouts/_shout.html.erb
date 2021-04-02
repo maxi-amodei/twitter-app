@@ -1,5 +1,6 @@
 <%# Aca el shout hace referencia a cada instancia de @shouts, dentro de un each %>
   <div>
+    <%= avatar(shout.user)  %>
     <%= link_to shout.username, shout.user  %>
     <%= render shout.content if !shout.content.nil? %>
     <%= link_to shout do %>
