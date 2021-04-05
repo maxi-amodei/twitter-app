@@ -14,7 +14,7 @@ class User < ApplicationRecord
     # it looks for all the users with user_id = followed_user_id
     # SELECT * FROM users
     # (JOIN is on user_id = followed_user_id)
-    # (WHERE follower_id = 1) Para el user/follower 1, trame todos los followed
+    # (WHERE follower_id = 1) Para el user/follower 1, trame todos los followed, todos los que sigue él
   has_many :followed_user_relationships, foreign_key: :follower_id, class_name: "FollowingRelationship", dependent: :destroy
   has_many :followed_users, through: :followed_user_relationships
 

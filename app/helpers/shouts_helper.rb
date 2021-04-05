@@ -9,6 +9,9 @@ module ShoutsHelper
   end
 
   def autolink(text)
-    text.gsub(/@\w+\D?\w+/) { |mention| link_to mention, user_path(mention[1..-1]) }.html_safe
+    text.
+      gsub(/@\w+\D?\w+/) { |mention| link_to mention, user_path(mention[1..-1]) }.
+      gsub(/#\w+\D?\w+/) { |hashtag| link_to hashtag, hashtag_path(hashtag[1..-1]) }.
+      html_safe
   end
 end
